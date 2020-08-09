@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
+        <item
+            android:id="@+id/navItemFavorite"
+            android:checked="true"
+            android:icon="@drawable/ic_star"
+            android:title="@string/favorite" />
+    </group>
+</menu>

@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "person_name": "Nick",
+    "person_img_url": "https://avatars3.githubusercontent.com/u/1024025",
+    "person_address": "Delhi"
+  },
+  {
+    "id": 2,
+    "person_name": "John",
+    "person_img_url": "https://janishar.github.io/images/mindorks-logo-small.png",
+    "person_address": "Noida"
+  },
+  {
+    "id": 5,
+    "person_name": "Anna",
+    "person_img_url": "https://i.picsum.photos/id/100/2500/1656.jpg?hmac=gWyN-7ZB32rkAjMhKXQgdHOIBRHyTSgzuOK6U0vXb1w",
+    "person_address": "Gurgoan"
+  },
+  {
+    "id": 6,
+    "person_name": "Rohit",
+    "person_img_url": "https://avatars3.githubusercontent.com/u/1024025",
+    "person_address": "Pune"
+  },
+  {
+    "id": 7,
+    "person_name": "Rahul",
+    "person_img_url": "https://janishar.github.io/images/mindorks-logo-small.png",
+    "person_address": "Bangalore"
+  }
+]

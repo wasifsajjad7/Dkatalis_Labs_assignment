@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Dkatalis Labs assignment</string>
+    <string name="action_settings">Settings</string>
+    <string name="version">"version"</string>
+
+    <!--Drawer Menus-->
+    <string name="favorite">Favorites</string>
+
+    <!--Drawer-->
+    <string name="open_drawer">Drawer Open</string>
+    <string name="close_drawer">Drawer Close</string>
+
+    <!--favorites fragment-->
+    <string name="project_info">This sample app implements MVVM architecture using Dagger2, GreenDao, RxJava, FastAndroidNetworking and PlaceholderView</string>
+    <string name="link_mvvm_blog">1. https://blog.mindorks.com</string>
+    <string name="link_mvvm_repo">2. https://github.com/MindorksOpenSource/android-mvvm-architecture</string>
+    <string name="link_mindorks_blog">3. https://blog.mindorks.com</string>
+    <string name="link_mindorks_repo">4. https://github.com/MindorksOpenSource</string>
+
+</resources>
