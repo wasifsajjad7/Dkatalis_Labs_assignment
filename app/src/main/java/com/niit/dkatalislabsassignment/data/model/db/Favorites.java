@@ -4,7 +4,6 @@ package com.niit.dkatalislabsassignment.data.model.db;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -20,6 +19,30 @@ public class Favorites {
     @Expose
     @PrimaryKey
     public Long id;
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public void setPersonName(String personName) {
+        this.personName = personName;
+    }
+
+    public void setPersonAddress(String personAddress) {
+        this.personAddress = personAddress;
+    }
+
+    public void setUpdatedAt(String updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 
     @Expose
     @SerializedName("person_img_url")

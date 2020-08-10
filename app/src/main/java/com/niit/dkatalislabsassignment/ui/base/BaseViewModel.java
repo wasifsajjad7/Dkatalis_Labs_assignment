@@ -2,10 +2,8 @@ package com.niit.dkatalislabsassignment.ui.base;
 
 import androidx.lifecycle.ViewModel;
 import androidx.databinding.ObservableBoolean;
-
 import com.niit.dkatalislabsassignment.data.DataManager;
 import com.niit.dkatalislabsassignment.utils.rx.SchedulerProvider;
-
 import io.reactivex.disposables.CompositeDisposable;
 import java.lang.ref.WeakReference;
 

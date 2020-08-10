@@ -10,7 +10,6 @@ import com.niit.dkatalislabsassignment.data.model.db.Favorites;
 import com.niit.dkatalislabsassignment.data.model.db.PersonInfo;
 import com.niit.dkatalislabsassignment.ui.base.BaseViewModel;
 import com.niit.dkatalislabsassignment.utils.rx.SchedulerProvider;
-
 import java.util.List;
 
 public class MainViewModel extends BaseViewModel<MainNavigator> {
@@ -26,6 +25,7 @@ public class MainViewModel extends BaseViewModel<MainNavigator> {
 
 
     private int action = NO_ACTION;
+
 
     public MainViewModel(DataManager dataManager, SchedulerProvider schedulerProvider) {
         super(dataManager, schedulerProvider);
@@ -70,15 +70,18 @@ public class MainViewModel extends BaseViewModel<MainNavigator> {
                 }));
     }
 
-    public void saveFavorites(Favorites favorites) {
+    public void saveFavorites(Favorites personInfo) {
+
         getCompositeDisposable().add(getDataManager()
-                .saveFavorites(favorites)
+                .saveFavorites(personInfo)
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(aBoolean -> {
                     /* Work after save favorites*/
+                    getNavigator().openFavorites("Successfully Saved in Favorites");
                 }, throwable -> {
                     /* Work after save favorites*/
+                    getNavigator().openFavorites("Error in Favorites");
                 }));
     }
 
@@ -90,6 +93,5 @@ public class MainViewModel extends BaseViewModel<MainNavigator> {
         action = ACTION_DELETE_SINGLE;
 
     }
-
 
 }

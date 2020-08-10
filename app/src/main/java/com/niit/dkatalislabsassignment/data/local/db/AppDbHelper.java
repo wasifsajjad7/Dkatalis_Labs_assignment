@@ -2,13 +2,10 @@ package com.niit.dkatalislabsassignment.data.local.db;
 
 import com.niit.dkatalislabsassignment.data.model.db.Favorites;
 import com.niit.dkatalislabsassignment.data.model.db.PersonInfo;
-
 import java.util.List;
 import java.util.concurrent.Callable;
-
 import javax.inject.Inject;
 import javax.inject.Singleton;
-
 import io.reactivex.Observable;
 
 @Singleton
@@ -39,11 +36,11 @@ public class AppDbHelper implements DbHelper {
     }
 
     @Override
-    public Observable<Boolean> saveFavorites(Favorites favorites) {
+    public Observable<Boolean> saveFavorites(Favorites personInfo) {
         return Observable.fromCallable(new Callable<Boolean>() {
             @Override
             public Boolean call() throws Exception {
-                mAppDatabase.favoritesDao().insert(favorites);
+                mAppDatabase.favoritesDao().insert(personInfo);
                 return true;
             }
         });

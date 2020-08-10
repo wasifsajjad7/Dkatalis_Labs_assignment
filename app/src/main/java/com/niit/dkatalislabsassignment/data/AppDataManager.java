@@ -49,8 +49,8 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
-    public Observable<Boolean> saveFavorites(Favorites favorites) {
-        return mDbHelper.saveFavorites(favorites);
+    public Observable<Boolean> saveFavorites(Favorites personInfo) {
+        return mDbHelper.saveFavorites(personInfo);
     }
 
     @Override

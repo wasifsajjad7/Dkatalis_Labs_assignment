@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
@@ -25,24 +26,29 @@ import com.mindorks.placeholderview.SwipeDecor;
 import com.mindorks.placeholderview.SwipePlaceHolderView;
 import com.niit.dkatalislabsassignment.R;
 import com.niit.dkatalislabsassignment.ViewModelProviderFactory;
+import com.niit.dkatalislabsassignment.data.model.db.Favorites;
+import com.niit.dkatalislabsassignment.data.model.db.PersonInfo;
 import com.niit.dkatalislabsassignment.databinding.ActivityMainBinding;
 import com.niit.dkatalislabsassignment.databinding.NavHeaderMainBinding;
-import com.niit.dkatalislabsassignment.ui.favorite.FavoritesFragment;
+import com.niit.dkatalislabsassignment.ui.favorites.FavoritesFragment;
+import com.niit.dkatalislabsassignment.ui.details.DetailsFragment;
 import com.niit.dkatalislabsassignment.ui.base.BaseActivity;
 import com.niit.dkatalislabsassignment.utils.ScreenUtils;
+
 import javax.inject.Inject;
 
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
 
-public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel> implements MainNavigator, HasSupportFragmentInjector {
+public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel> implements MainNavigator, HasSupportFragmentInjector,PersonInfoCard.CardCallback {
 
     @Inject
     DispatchingAndroidInjector<Fragment> fragmentDispatchingAndroidInjector;
 
     @Inject
     ViewModelProviderFactory factory;
+
     private ActivityMainBinding mActivityMainBinding;
     private SwipePlaceHolderView mCardsContainerView;
     private DrawerLayout mDrawer;
@@ -77,13 +83,20 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     }
 
     @Override
+    public void openFavorites(String msg) {
+        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
     public void onBackPressed() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         Fragment fragment = fragmentManager.findFragmentByTag(FavoritesFragment.TAG);
         if (fragment == null) {
             super.onBackPressed();
         } else {
+
             onFragmentDetached(FavoritesFragment.TAG);
+
         }
     }
 
@@ -182,6 +195,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     }
 
     private void setupCardContainerView() {
+
         int screenWidth = ScreenUtils.getScreenWidth(this);
         int screenHeight = ScreenUtils.getScreenHeight(this);
 
@@ -207,6 +221,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                 mMainViewModel.removePersonInfoCard();
             }
         });
+   mActivityMainBinding.setCallbackListener(this);
+
     }
 
     private void setupNavMenu() {
@@ -220,7 +236,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                     mDrawer.closeDrawer(GravityCompat.START);
                     switch (item.getItemId()) {
                         case R.id.navItemFavorite:
-                            showAboutFragment();
+                            showFavoriteFragment();
                             return true;
                         default:
                             return false;
@@ -228,7 +244,16 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                 });
     }
 
-    private void showAboutFragment() {
+    private void showDetailsFragment(PersonInfo personInfo) {
+        lockDrawer();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .disallowAddToBackStack()
+                .setCustomAnimations(R.anim.slide_left, R.anim.slide_right)
+                .add(R.id.clRootView, DetailsFragment.newInstance(personInfo), DetailsFragment.TAG)
+                .commit();
+    }
+    private void showFavoriteFragment() {
         lockDrawer();
         getSupportFragmentManager()
                 .beginTransaction()
@@ -242,9 +267,30 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         mMainViewModel.getPersonInfoCardData().observe(this, PersonInfoCardDatas -> mMainViewModel.setPersonInfoDataList(PersonInfoCardDatas));
     }
 
+
     private void unlockDrawer() {
         if (mDrawer != null) {
             mDrawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
         }
+    }
+
+    @Override
+    public void onSwipeRight(PersonInfo personInfo) {
+        /*Handle Save Favorite here*/
+        Favorites favorites = new Favorites();
+        favorites.setCreatedAt(personInfo.createdAt);
+        favorites.setId(personInfo.id);
+        favorites.setPersonName(personInfo.personName);
+        favorites.setPersonAddress(personInfo.personAddress);
+        favorites.setImgUrl(personInfo.imgUrl);
+        favorites.setUpdatedAt(personInfo.updatedAt);
+
+      mMainViewModel.saveFavorites(favorites);
+    }
+
+    @Override
+    public void onSwipeLeft(PersonInfo personInfo) {
+        /*Open person details fragment*/
+        showDetailsFragment(personInfo);
     }
 }

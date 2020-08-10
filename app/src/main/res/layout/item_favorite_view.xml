@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.niit.dkatalislabsassignment.ui.favorites.FavoritesItemViewModel" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@color/white"
+            android:orientation="vertical"
+            app:cardCornerRadius="7dp"
+            app:cardElevation="4dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="20dp">
+                <ImageView
+                    android:id="@+id/coverImageView"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:scaleType="fitCenter"
+                    app:imageUrl="@{viewModel.imageUrl}"
+                    tools:src="@drawable/ic_rabbit" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/titleTextView"
+                        style="@style/TextStyle.Heading"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@{viewModel.name}"
+                        tools:text="Android MVP Architecture" />
+
+
+                    <TextView
+                        android:id="@+id/authorTextView"
+                        style="@style/TextStyle.Title.Sub"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:text="@{viewModel.address}"
+                        tools:text="Amit Shekhar" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+
+</layout>

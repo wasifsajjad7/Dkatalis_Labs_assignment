@@ -2,10 +2,8 @@ package com.niit.dkatalislabsassignment.ui.splash;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.databinding.library.baseAdapters.BR;
 import androidx.lifecycle.ViewModelProviders;
-
 import com.niit.dkatalislabsassignment.R;
 import com.niit.dkatalislabsassignment.ViewModelProviderFactory;
 import com.niit.dkatalislabsassignment.databinding.ActivitySplashBinding;

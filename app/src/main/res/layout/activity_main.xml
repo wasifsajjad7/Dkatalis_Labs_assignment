@@ -12,6 +12,9 @@
         <variable
             name="viewModel"
             type="com.niit.dkatalislabsassignment.ui.main.MainViewModel" />
+        <variable
+            name="callbackListener"
+            type="com.niit.dkatalislabsassignment.ui.main.PersonInfoCard.CardCallback" />
 
     </data>
 
@@ -84,6 +87,7 @@
                         android:layout_height="match_parent"
                         app:action="@{viewModel.action}"
                         app:adapter="@{viewModel.personInfoDataList}"
+                        app:callback="@{callbackListener}"
                         android:layout_centerInParent="true"/>
 </RelativeLayout>
                 </LinearLayout>

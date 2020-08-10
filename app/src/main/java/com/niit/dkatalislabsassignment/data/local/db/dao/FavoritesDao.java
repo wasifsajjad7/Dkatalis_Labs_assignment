@@ -5,6 +5,8 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import com.niit.dkatalislabsassignment.data.model.db.Favorites;
+
+
 import java.util.List;
 import io.reactivex.Single;
 
@@ -12,8 +14,8 @@ import io.reactivex.Single;
 public interface FavoritesDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(Favorites favorites);
+    void insert(Favorites personInfo);
 
-    @Query("SELECT * FROM personInfo")
+    @Query("SELECT * FROM favorites")
     Single<List<Favorites>> loadAll();
 }

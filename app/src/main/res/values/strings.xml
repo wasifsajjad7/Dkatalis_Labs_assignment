@@ -6,6 +6,8 @@
     <!--Drawer Menus-->
     <string name="favorite">Favorites</string>
 
+    <string name="details">Details</string>
+
     <!--Drawer-->
     <string name="open_drawer">Drawer Open</string>
     <string name="close_drawer">Drawer Close</string>

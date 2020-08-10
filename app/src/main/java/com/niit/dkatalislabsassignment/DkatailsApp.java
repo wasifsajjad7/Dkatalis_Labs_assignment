@@ -10,15 +10,13 @@ import com.niit.dkatalislabsassignment.utils.AppLogger;
 import javax.inject.Inject;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
-//import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+
 
 public class DkatailsApp extends Application implements HasActivityInjector {
 
     @Inject
     DispatchingAndroidInjector<Activity> activityDispatchingAndroidInjector;
 
-//    @Inject
-//    CalligraphyConfig mCalligraphyConfig;
 
     @Override
     public DispatchingAndroidInjector<Activity> activityInjector() {
@@ -41,6 +39,5 @@ public class DkatailsApp extends Application implements HasActivityInjector {
             AndroidNetworking.enableLogging(HttpLoggingInterceptor.Level.BODY);
         }
 
-//        CalligraphyConfig.initDefault(mCalligraphyConfig);
     }
 }

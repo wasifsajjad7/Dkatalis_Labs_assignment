@@ -6,9 +6,10 @@ import com.mindorks.placeholderview.annotations.Layout;
 import com.mindorks.placeholderview.annotations.NonReusable;
 import com.mindorks.placeholderview.annotations.Resolve;
 import com.mindorks.placeholderview.annotations.View;
+import com.mindorks.placeholderview.annotations.swipe.SwipeIn;
+import com.mindorks.placeholderview.annotations.swipe.SwipeOut;
 import com.niit.dkatalislabsassignment.R;
 import com.niit.dkatalislabsassignment.data.model.db.PersonInfo;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 
 @NonReusable
@@ -27,8 +28,11 @@ public class PersonInfoCard {
     @View(R.id.profile_image)
     private CircleImageView mProfileImage;
 
-    public PersonInfoCard(PersonInfo personInfoCardData) {
+    private CardCallback callback;
+
+    public PersonInfoCard(PersonInfo personInfoCardData ,CardCallback callback) {
         mPersonInfoCardData = personInfoCardData;
+        this.callback = callback;
     }
 
     @Resolve
@@ -36,6 +40,21 @@ public class PersonInfoCard {
         mPersonInfoTextView.setText(mPersonInfoCardData.personName);
         mPersonAddressTextView.setText(mPersonInfoCardData.personAddress);
         Glide.with(mProfileImage.getContext()).load(mPersonInfoCardData.imgUrl).into(mProfileImage);
+    }
+
+    @SwipeOut
+    public void onSwipedOut() {
+        callback.onSwipeLeft(mPersonInfoCardData);
+    }
+
+    @SwipeIn
+    public void onSwipeIn() {
+        callback.onSwipeRight(mPersonInfoCardData);
+    }
+
+    public interface CardCallback{
+        void onSwipeRight(PersonInfo mPersonInfoCardData);
+        void onSwipeLeft(PersonInfo mPersonInfoCardData);
     }
 
 }

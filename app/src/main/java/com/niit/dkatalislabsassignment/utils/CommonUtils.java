@@ -5,9 +5,7 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-
 import com.niit.dkatalislabsassignment.R;
-
 import java.io.IOException;
 import java.io.InputStream;
 
